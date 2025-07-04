@@ -1,0 +1,398 @@
+/* CSS Variables for Theme Management */
+:root {
+  /* Light theme colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #282c34;
+  --text-secondary: #61dafb;
+  --border-color: #e9ecef;
+  --button-bg: #007bff;
+  --button-text: #ffffff;
+}
+
+[data-theme="dark"] {
+  /* Dark theme colors */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #282c34;
+  --text-primary: #ffffff;
+  --text-secondary: #61dafb;
+  --border-color: #404040;
+  --button-bg: #0056b3;
+  --button-text: #ffffff;
+}
+
+/* ---------- THEME AND GLOBAL ---------- */
+:root {
+  --kavia-primary: #1976D2;
+  --kavia-secondary: #424242;
+  --kavia-accent: #FFC107;
+  --bg-primary: #fff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #282c34;
+  --border-color: #e0e0e0;
+  --fab-bg: var(--kavia-primary);
+  --fab-fg: #fff;
+  --error-bg: #ffe1e1;
+  --error-text: #b00020;
+  --spinner-color: var(--kavia-primary);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #181a1b;
+  --bg-secondary: #222326;
+  --text-primary: #f9f9f9;
+  --border-color: #393939;
+  --fab-bg: var(--kavia-accent);
+  --fab-fg: #222326;
+}
+
+
+
+/* ---------- APP LAYOUT ---------- */
+.notes-app {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.notes-header {
+  text-align: center;
+  background: var(--bg-secondary);
+  padding: 1.8rem 0 1.2rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.notes-header h1 {
+  margin: 0;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  color: var(--kavia-primary);
+}
+.notes-header .subtitle {
+  color: var(--kavia-secondary);
+  font-size: 1rem;
+  opacity: 0.75;
+  font-weight: 400;
+}
+
+.notes-main {
+  flex: 1;
+  max-width: 610px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.4rem 1rem 4.2rem 1rem;
+  min-height: 300px;
+  background: transparent;
+}
+
+.empty-notes {
+  margin-top: 2.6rem;
+  color: var(--kavia-secondary);
+  opacity: 0.7;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.note-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.note-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 7px 0 rgba(60,70,110,0.03);
+  padding: 1.1rem 1.3rem 1rem 1.1rem;
+  transition: background 0.18s, box-shadow 0.18s;
+}
+.note-item:focus-within,
+.note-item:hover {
+  background: var(--bg-primary);
+  box-shadow: 0 2px 10px 0 rgba(40,70,150,0.075);
+}
+.note-content {
+  flex: 1 1 70%;
+  cursor: pointer;
+  padding-right: 1rem;
+}
+.note-title {
+  display: block;
+  font-weight: 600;
+  font-size: 1.16rem;
+  color: var(--kavia-primary);
+}
+.note-snippet {
+  font-size: 1rem;
+  margin-top: 0.08em;
+  color: var(--kavia-secondary);
+  opacity: 0.8;
+  max-width: 400px;
+}
+.note-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+}
+.note-btn {
+  border: none;
+  background: none;
+  font-size: 1.27em;
+  cursor: pointer;
+  padding: 0.2em;
+  color: var(--kavia-secondary);
+  transition: color 0.18s;
+}
+.note-btn:hover,
+.note-btn:active {
+  color: var(--kavia-primary);
+}
+.note-edit {}
+.note-delete {}
+
+
+
+/* ---------- FLOATING ACTION BUTTON ---------- */
+.fab {
+  position: fixed;
+  right: 24px;
+  bottom: 32px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--fab-bg);
+  color: var(--fab-fg);
+  border: none;
+  font-size: 2em;
+  box-shadow: 0 6px 16px rgba(40,70,150,0.125), 0 2px 5px rgba(0,0,0,0.09);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.23s, background 0.23s;
+  z-index: 110;
+}
+.fab:hover, .fab:focus {
+  opacity: 0.92;
+  background: var(--kavia-accent);
+  color: var(--kavia-secondary);
+}
+.fab:active {
+  opacity: 0.84;
+}
+
+/* ---------- MODAL FOR EDIT/CREATE ---------- */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(31,32,40,0.19);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(40,50,110,0.21);
+  padding: 2.1rem 2.55rem 1.3rem 2.5rem;
+  max-width: 440px;
+  width: 100%;
+  min-width: 290px;
+  position: relative;
+  animation: modalIn 0.22s cubic-bezier(.39,.6,.4,1.5);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(70px) scale(0.85);}
+  to   { opacity: 1; transform: translateY(0) scale(1);}
+}
+.modal h2 {
+  margin-top: 0; 
+  color: var(--kavia-primary);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+.form-group {
+  margin-bottom: 1.17rem;
+  width: 100%;
+}
+.input, .textarea {
+  width: 100%;
+  padding: 0.64em 0.7em;
+  font-size: 1.01em;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-sizing: border-box;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: border 0.19s;
+}
+.input:focus, .textarea:focus {
+  border: 1.5px solid var(--kavia-primary);
+  outline: none;
+}
+.textarea {
+  min-height: 110px;
+  font-family: inherit;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8em
+}
+.modal-btn {
+  background: var(--kavia-primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 17px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.21s;
+  margin-left: 0.4em;
+}
+.modal-btn:disabled {
+  opacity: 0.67;
+  cursor: not-allowed;
+}
+.modal-btn.modal-save {
+  background: var(--kavia-accent);
+  color: var(--kavia-secondary);
+}
+.modal-btn:hover,
+.modal-btn:active {
+  background: var(--kavia-secondary);
+  color: #fff;
+}
+.error-msg {
+  color: var(--error-text);
+  background: var(--error-bg);
+  border-radius: 5px;
+  margin-top: 14px;
+  padding: 6px 15px;
+  font-size: 0.96em;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- ERROR & LOADING ---------- */
+.error-banner {
+  background: var(--error-bg);
+  color: var(--error-text);
+  padding: 13px 18px;
+  margin: 18px 0 0;
+  border-radius: 7px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.85em;
+}
+.retry-btn {
+  background: var(--kavia-accent);
+  color: #222;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 13px;
+  font-weight: 500;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.retry-btn:hover,
+.retry-btn:active {
+  background: var(--kavia-primary);
+  color: #fff;
+}
+.loading-spinner,
+.loading-spinner:after {
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+}
+.loading-spinner {
+  margin: 70px auto;
+  font-size: 1.5rem;
+  border: 0.2em solid var(--spinner-color);
+  border-top: 0.2em solid transparent;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin {
+  100% {transform: rotate(360deg);}
+}
+
+/* ---------- THEME TOGGLE BUTTON ---------- */
+.theme-toggle {
+  position: absolute;
+  top: 18px;
+  right: 19px;
+  background-color: var(--fab-bg);
+  color: var(--fab-fg);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.10);
+  z-index: 120;
+}
+.theme-toggle:hover {
+  opacity: 0.92;
+  background: var(--kavia-accent);
+  color: var(--kavia-secondary);
+}
+.theme-toggle:active {
+  opacity: 0.85;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: 10px;
+    right: 10px;
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  .notes-header h1 {
+    font-size: 1.3rem;
+  }
+  .modal {
+    padding: 1.15rem 1rem 1rem 1rem;
+    min-width: 110px;
+    max-width: 95vw;
+  }
+  .fab {
+    width: 46px;
+    height: 46px;
+    font-size: 1.4em;
+    right: 8px;
+    bottom: 14px;
+  }
+  .notes-main {
+    padding: 1rem 0.2rem 3.2rem 0.2rem;
+  }
+  .note-snippet {
+    max-width: 185px;
+    font-size: 0.98em;
+  }
+}
+
+/* Hide default React starter content styles from old app */
+.App, .App-header, .App-logo, .App-link {
+  display: none !important;
+}
